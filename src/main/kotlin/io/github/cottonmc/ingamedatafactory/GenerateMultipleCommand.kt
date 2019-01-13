@@ -2,7 +2,7 @@
  * by the Cotton Project, licensed under the MIT license.
  * Full code and license: https://github.com/CottonMC/ingame-json-factory
  */
-package io.github.cottonmc.ingamejsonfactory
+package io.github.cottonmc.ingamedatafactory
 
 import com.mojang.brigadier.CommandDispatcher
 import io.github.cottonmc.jsonfactory.gens.Gens
@@ -24,7 +24,7 @@ object GenerateMultipleCommand {
     @JvmStatic
     @Suppress("UNCHECKED_CAST")
     fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
-        val base = ServerCommandManager.literal("generatejsons")
+        val base = ServerCommandManager.literal("generatedataset")
 
         for ((name, set) in sets) {
             base.then(

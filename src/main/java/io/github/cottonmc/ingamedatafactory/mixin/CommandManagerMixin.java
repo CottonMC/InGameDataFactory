@@ -2,13 +2,13 @@
  * by the Cotton Project, licensed under the MIT license.
  * Full code and license: https://github.com/CottonMC/ingame-json-factory
  */
-package io.github.cottonmc.ingamejsonfactory.mixin;
+package io.github.cottonmc.ingamedatafactory.mixin;
 
 import com.mojang.brigadier.CommandDispatcher;
-import io.github.cottonmc.ingamejsonfactory.ChangePackNameCommand;
-import io.github.cottonmc.ingamejsonfactory.GenerateCommand;
-import io.github.cottonmc.ingamejsonfactory.GenerateMultipleCommand;
-import io.github.cottonmc.ingamejsonfactory.GeneratePackMcmetaCommand;
+import io.github.cottonmc.ingamedatafactory.ChangePackNameCommand;
+import io.github.cottonmc.ingamedatafactory.GenerateCommand;
+import io.github.cottonmc.ingamedatafactory.GenerateMultipleCommand;
+import io.github.cottonmc.ingamedatafactory.GeneratePackMcmetaCommand;
 import net.minecraft.server.command.ServerCommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import org.spongepowered.asm.mixin.Final;

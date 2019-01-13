@@ -2,7 +2,7 @@
  * by the Cotton Project, licensed under the MIT license.
  * Full code and license: https://github.com/CottonMC/ingame-json-factory
  */
-package io.github.cottonmc.ingamejsonfactory
+package io.github.cottonmc.ingamedatafactory
 
 import com.mojang.brigadier.CommandDispatcher
 import net.fabricmc.loader.FabricLoader
@@ -17,7 +17,7 @@ object GeneratePackMcmetaCommand {
     fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             ServerCommandManager.literal("generatepackmcmeta").executes {
-                val file = File(FabricLoader.INSTANCE.gameDirectory, "resourcepacks/${IngameJsonFactory.packName}/pack.mcmeta")
+                val file = File(FabricLoader.INSTANCE.gameDirectory, "resourcepacks/${IngameDataFactory.packName}/pack.mcmeta")
                 if (file.exists())
                     throw GenerateCommand.FILE_ALREADY_EXISTS.create(file.toRelativeString(FabricLoader.INSTANCE.gameDirectory))
 

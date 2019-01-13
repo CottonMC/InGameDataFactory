@@ -2,7 +2,7 @@
  * by the Cotton Project, licensed under the MIT license.
  * Full code and license: https://github.com/CottonMC/ingame-json-factory
  */
-package io.github.cottonmc.ingamejsonfactory
+package io.github.cottonmc.ingamedatafactory
 
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.LiteralMessage
@@ -26,7 +26,7 @@ object GenerateCommand {
     private val values = mapOf(
         "block_model" to Gens.basicBlockModel,
         "blockstates" to Gens.basicBlockState,
-        "block_item" to Gens.basicBlockItemModel,
+        "block_item_model" to Gens.basicBlockItemModel,
         "item_model" to Gens.basicItemModel,
         "loot_table" to Gens.basicLootTable,
         "placeholder_block_texture" to Gens.placeholderTextureBlock,
@@ -35,7 +35,7 @@ object GenerateCommand {
 
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
-        dispatcher.register(ServerCommandManager.literal("generatejson").then(
+        dispatcher.register(ServerCommandManager.literal("generatedata").then(
             ServerCommandManager.argument(
                 "identifier",
                 IdentifierArgumentType
@@ -59,7 +59,7 @@ object GenerateCommand {
 
     private fun run(context: CommandContext<ServerCommandSource>, gen: ContentGenerator = Gens.basicBlockModel) {
         val id = context.getArgument("identifier", Identifier::class.java)
-        val packDir = File(FabricLoader.INSTANCE.gameDirectory, "resourcepacks/${IngameJsonFactory.packName}")
+        val packDir = File(FabricLoader.INSTANCE.gameDirectory, "resourcepacks/${IngameDataFactory.packName}")
         Files.createDirectories(packDir.toPath())
 
         gen.generate(id).forEach {

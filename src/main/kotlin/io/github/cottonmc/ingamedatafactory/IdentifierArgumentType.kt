@@ -2,7 +2,7 @@
  * by the Cotton Project, licensed under the MIT license.
  * Full code and license: https://github.com/CottonMC/ingame-json-factory
  */
-package io.github.cottonmc.ingamejsonfactory
+package io.github.cottonmc.ingamedatafactory
 
 import com.mojang.brigadier.LiteralMessage
 import com.mojang.brigadier.StringReader

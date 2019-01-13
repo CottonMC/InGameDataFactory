@@ -2,7 +2,7 @@
  * by the Cotton Project, licensed under the MIT license.
  * Full code and license: https://github.com/CottonMC/ingame-json-factory
  */
-package io.github.cottonmc.ingamejsonfactory
+package io.github.cottonmc.ingamedatafactory
 
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
@@ -19,9 +19,9 @@ object ChangePackNameCommand {
                     "name",
                     StringArgumentType.string()
                 ).executes {
-                    val oldName = IngameJsonFactory.packName
+                    val oldName = IngameDataFactory.packName
                     val newName = StringArgumentType.getString(it, "name")
-                    IngameJsonFactory.packName = newName
+                    IngameDataFactory.packName = newName
                     it.source.sendFeedback(StringTextComponent("Changed pack name from $oldName to $newName"), true)
                     1
                 }

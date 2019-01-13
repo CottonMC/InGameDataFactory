@@ -1,10 +1,10 @@
 {
-  "id": "ingamejsonfactory",
-  "name": "In-Game JSON Factory",
-  "description": "Generates JSONs",
+  "id": "ingamedatafactory",
+  "name": "In-Game Data Factory",
+  "description": "A mod that generates Minecraft data files in-game. ",
   "version": "0.1.0",
   "side": "universal",
-  "initializer": "io.github.cottonmc.ingamejsonfactory.IngameJsonFactory",
+  "initializer": "io.github.cottonmc.ingamedatafactory.IngameDataFactory",
   "requires": {
     "fabric": "*",
     "fabric-language-kotlin": {
@@ -12,8 +12,8 @@
     }
   },
   "mixins": {
-    "client": "ingame-json-factory.client.json",
-    "common": "ingame-json-factory.common.json"
+    "client": "ingame-data-factory.client.json",
+    "common": "ingame-data-factory.common.json"
   },
   "languageAdapter": "net.fabricmc.language.kotlin.KotlinLanguageAdapter"
 }
