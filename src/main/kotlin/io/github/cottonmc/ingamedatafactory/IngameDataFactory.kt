@@ -7,7 +7,7 @@ package io.github.cottonmc.ingamedatafactory
 import net.fabricmc.api.ModInitializer
 
 object IngameDataFactory : ModInitializer {
-    internal var outputPath = "json-factory-output"
+    internal var outputPath = "ingame-data-factory"
 
     override fun onInitialize() {}
 }
