@@ -59,7 +59,7 @@ object GenerateCommand {
 
     private fun run(context: CommandContext<ServerCommandSource>, gen: ContentGenerator = Gens.basicBlockModel) {
         val id = context.getArgument("identifier", Identifier::class.java)
-        val packDir = File(FabricLoader.INSTANCE.gameDirectory, "resourcepacks/${IngameDataFactory.packName}")
+        val packDir = File(FabricLoader.INSTANCE.gameDirectory, "resourcepacks/${IngameDataFactory.outputPath}")
         Files.createDirectories(packDir.toPath())
 
         gen.generate(id).forEach {

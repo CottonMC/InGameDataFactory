@@ -14,14 +14,14 @@ object ChangePackNameCommand {
     @JvmStatic
     fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
-            ServerCommandManager.literal("changejsonpackname").then(
+            ServerCommandManager.literal("changedataoutputpath").then(
                 ServerCommandManager.argument(
                     "name",
                     StringArgumentType.string()
                 ).executes {
-                    val oldName = IngameDataFactory.packName
+                    val oldName = IngameDataFactory.outputPath
                     val newName = StringArgumentType.getString(it, "name")
-                    IngameDataFactory.packName = newName
+                    IngameDataFactory.outputPath = newName
                     it.source.sendFeedback(StringTextComponent("Changed pack name from $oldName to $newName"), true)
                     1
                 }

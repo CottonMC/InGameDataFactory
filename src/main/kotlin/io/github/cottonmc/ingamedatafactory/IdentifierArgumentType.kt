@@ -21,9 +21,9 @@ object IdentifierArgumentType : ArgumentType<Identifier> {
         val path = reader.readUnquotedString()
 
         if (namespace.isEmpty())
-            throw MISSING_PART.create("namespace")
+            throw MISSING_PART.createWithContext(reader, "namespace")
         else if (path.isEmpty())
-            throw MISSING_PART.create("path")
+            throw MISSING_PART.createWithContext(reader, "path")
 
         return Identifier(namespace, path)
     }
