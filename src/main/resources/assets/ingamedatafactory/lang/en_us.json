@@ -1,0 +1,6 @@
+{
+  "command.igdf.generatedata.file_already_exists": "File %s already exists",
+  "command.igdf.generatedata.generated": "Generated %s",
+  "command.igdf.changedataoutputpath.changed": "Changed output pack name from %s to %s",
+  "argument.igdf.identifier_part_missing": "Missing %s"
+}

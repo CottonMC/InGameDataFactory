@@ -4,15 +4,15 @@
  */
 package io.github.cottonmc.ingamedatafactory
 
-import com.mojang.brigadier.LiteralMessage
 import com.mojang.brigadier.StringReader
 import com.mojang.brigadier.arguments.ArgumentType
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType
 import io.github.cottonmc.jsonfactory.data.Identifier
+import net.minecraft.text.TranslatableTextComponent
 
 object IdentifierArgumentType : ArgumentType<Identifier> {
     private val MISSING_PART = DynamicCommandExceptionType {
-        LiteralMessage("Missing $it")
+        TranslatableTextComponent("argument.igdf.identifier_part_missing", it)
     }
 
     override fun <S> parse(reader: StringReader): Identifier {

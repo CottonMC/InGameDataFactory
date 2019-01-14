@@ -5,7 +5,6 @@
 package io.github.cottonmc.ingamedatafactory
 
 import com.mojang.brigadier.CommandDispatcher
-import com.mojang.brigadier.LiteralMessage
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType
 import io.github.cottonmc.jsonfactory.data.Identifier
@@ -14,13 +13,13 @@ import io.github.cottonmc.jsonfactory.gens.Gens
 import net.fabricmc.loader.FabricLoader
 import net.minecraft.server.command.ServerCommandManager
 import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.text.StringTextComponent
+import net.minecraft.text.TranslatableTextComponent
 import java.io.File
 import java.nio.file.Files
 
 object GenerateCommand {
     val FILE_ALREADY_EXISTS = DynamicCommandExceptionType {
-        LiteralMessage("File $it already exists")
+        TranslatableTextComponent("command.igdf.generatedata.file_already_exists", it)
     }
 
     private val values = mapOf(
@@ -80,7 +79,7 @@ object GenerateCommand {
             if (!file.exists()) {
                 Files.createDirectories(file.parentFile.toPath())
                 it.writeToFile(file)
-                context.source.sendFeedback(StringTextComponent("Generated " + file.toRelativeString(packDir)), true)
+                context.source.sendFeedback(TranslatableTextComponent("command.igdf.generatedata.generated", file.toRelativeString(packDir)), true)
             } else {
                 throw FILE_ALREADY_EXISTS.create(file.toRelativeString(FabricLoader.INSTANCE.gameDirectory))
             }

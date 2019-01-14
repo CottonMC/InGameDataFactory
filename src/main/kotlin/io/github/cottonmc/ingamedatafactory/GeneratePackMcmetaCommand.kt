@@ -8,7 +8,7 @@ import com.mojang.brigadier.CommandDispatcher
 import net.fabricmc.loader.FabricLoader
 import net.minecraft.server.command.ServerCommandManager
 import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.text.StringTextComponent
+import net.minecraft.text.TranslatableTextComponent
 import java.io.File
 import java.nio.file.Files
 
@@ -23,7 +23,7 @@ object GeneratePackMcmetaCommand {
 
                 Files.createDirectories(file.parentFile.toPath())
                 file.writeText("""{ "pack": { "pack_format": 4, "description": "Automatically generated." } }""")
-                it.source.sendFeedback(StringTextComponent("Generated pack.mcmeta."), true)
+                it.source.sendFeedback(TranslatableTextComponent("command.igdf.generatedata.generated", "pack.mcmeta"), true)
                 1
             }
         )

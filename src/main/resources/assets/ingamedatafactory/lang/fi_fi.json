@@ -1,0 +1,6 @@
+{
+  "command.igdf.generatedata.file_already_exists": "Tiedosto %s on jo olemassa",
+  "command.igdf.generatedata.generated": "Generoitiin %s",
+  "command.igdf.changedataoutputpath.changed": "Vaihdettiin kohdepaketin nimi: %s -> %s",
+  "argument.igdf.identifier_part_missing": "%s-osa puuttuu"
+}

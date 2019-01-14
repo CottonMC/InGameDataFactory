@@ -8,7 +8,7 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import net.minecraft.server.command.ServerCommandManager
 import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.text.StringTextComponent
+import net.minecraft.text.TranslatableTextComponent
 
 object ChangePackNameCommand {
     @JvmStatic
@@ -22,7 +22,7 @@ object ChangePackNameCommand {
                     val oldName = IngameDataFactory.outputPath
                     val newName = StringArgumentType.getString(it, "name")
                     IngameDataFactory.outputPath = newName
-                    it.source.sendFeedback(StringTextComponent("Changed pack name from $oldName to $newName"), true)
+                    it.source.sendFeedback(TranslatableTextComponent("command.igdf.changedataoutputpath.changed", oldName, newName), true)
                     1
                 }
             )
