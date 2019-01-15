@@ -3,7 +3,6 @@
   "package": "io.github.cottonmc.ingamedatafactory.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "CommandManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

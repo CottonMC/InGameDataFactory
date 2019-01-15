@@ -7,12 +7,13 @@ package io.github.cottonmc.ingamedatafactory
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType
+import io.github.cottonmc.clientcommands.ArgumentBuilders
+import io.github.cottonmc.clientcommands.ClientCommands
 import io.github.cottonmc.jsonfactory.data.Identifier
 import io.github.cottonmc.jsonfactory.gens.ContentGenerator
 import io.github.cottonmc.jsonfactory.gens.Gens
 import net.fabricmc.loader.FabricLoader
-import net.minecraft.server.command.ServerCommandManager
-import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.server.command.CommandSource
 import net.minecraft.text.TranslatableTextComponent
 import java.io.File
 import java.nio.file.Files
@@ -32,16 +33,15 @@ object GenerateCommand {
         "placeholder_item_texture" to Gens.placeholderTextureItem
     )
 
-    @JvmStatic
-    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
-        dispatcher.register(ServerCommandManager.literal("generatedata").then(
-            ServerCommandManager.argument(
+    fun register(dispatcher: CommandDispatcher<CommandSource>) {
+        dispatcher.register(ArgumentBuilders.literal("generatedata").then(
+            ArgumentBuilders.argument(
                 "identifier",
                 IdentifierArgumentType
             ).apply {
                 for ((name, gen) in values) {
                     then(
-                        ServerCommandManager.literal(name).executes {
+                        ArgumentBuilders.literal(name).executes {
                             run(it, gen)
                             1
                         }
@@ -51,12 +51,12 @@ object GenerateCommand {
         ))
     }
 
-    fun runAll(context: CommandContext<ServerCommandSource>, gens: Iterable<ContentGenerator>) {
+    fun runAll(context: CommandContext<CommandSource>, gens: Iterable<ContentGenerator>) {
         for (gen in gens)
             run(context, gen)
     }
 
-    private fun run(context: CommandContext<ServerCommandSource>, gen: ContentGenerator = Gens.basicBlockModel) {
+    private fun run(context: CommandContext<CommandSource>, gen: ContentGenerator = Gens.basicBlockModel) {
         val id = context.getArgument("identifier", Identifier::class.java)
         val packDir = File(FabricLoader.INSTANCE.gameDirectory, "resourcepacks/${IngameDataFactory.outputPath}")
         Files.createDirectories(packDir.toPath())
@@ -79,7 +79,7 @@ object GenerateCommand {
             if (!file.exists()) {
                 Files.createDirectories(file.parentFile.toPath())
                 it.writeToFile(file)
-                context.source.sendFeedback(TranslatableTextComponent("command.igdf.generatedata.generated", file.toRelativeString(packDir)), true)
+                ClientCommands.sendFeedback(TranslatableTextComponent("command.igdf.generatedata.generated", file.toRelativeString(packDir)))
             } else {
                 throw FILE_ALREADY_EXISTS.create(file.toRelativeString(FabricLoader.INSTANCE.gameDirectory))
             }

@@ -5,9 +5,9 @@
 package io.github.cottonmc.ingamedatafactory
 
 import com.mojang.brigadier.CommandDispatcher
+import io.github.cottonmc.clientcommands.ArgumentBuilders
 import io.github.cottonmc.jsonfactory.gens.Gens
-import net.minecraft.server.command.ServerCommandManager
-import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.server.command.CommandSource
 
 object GenerateMultipleCommand {
     private val sets = mapOf(
@@ -21,18 +21,16 @@ object GenerateMultipleCommand {
         "sign" to setOf(Gens.Variants.signBlockModel, Gens.Variants.signBlockState, Gens.Variants.signLootTable, Gens.Variants.signItemModel)
     )
 
-    @JvmStatic
-    @Suppress("UNCHECKED_CAST")
-    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
-        val base = ServerCommandManager.literal("generatedataset")
+    fun register(dispatcher: CommandDispatcher<CommandSource>) {
+        val base = ArgumentBuilders.literal("generatedataset")
 
         for ((name, set) in sets) {
             base.then(
-                ServerCommandManager.argument(
+                ArgumentBuilders.argument(
                     "identifier",
                     IdentifierArgumentType
                 ).then(
-                    ServerCommandManager.literal(name).executes {
+                    ArgumentBuilders.literal(name).executes {
                         GenerateCommand.runAll(it, set)
                         1
                     }

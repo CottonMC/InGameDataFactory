@@ -4,10 +4,16 @@
  */
 package io.github.cottonmc.ingamedatafactory
 
+import io.github.cottonmc.clientcommands.ClientCommands
 import net.fabricmc.api.ModInitializer
 
 object IngameDataFactory : ModInitializer {
     internal var outputPath = "ingame-data-factory"
 
-    override fun onInitialize() {}
+    override fun onInitialize() {
+        ClientCommands.registerCommand(GenerateCommand::register)
+        ClientCommands.registerCommand(GenerateMultipleCommand::register)
+        ClientCommands.registerCommand(GeneratePackMcmetaCommand::register)
+        ClientCommands.registerCommand(ChangePackNameCommand::register)
+    }
 }

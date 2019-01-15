@@ -20,6 +20,7 @@ base {
 repositories {
     mavenCentral()
     maven(url = "http://server.bbkr.space:8081/artifactory/libs-release")
+    maven(url = "http://server.bbkr.space:8081/artifactory/libs-snapshot")
 }
 
 version = "0.1.0"
@@ -43,6 +44,7 @@ dependencies {
     modCompile("net.fabricmc:fabric-loader:0.3.2.92")
     modCompile("net.fabricmc:fabric:0.1.4.71")
     modCompile("net.fabricmc:fabric-language-kotlin:1.3.10-29")
+    modCompile("io.github.cottonmc:client-commands:0.1.0+19w02a-SNAPSHOT")
 
     // Other libraries
 //    add("shadow", "io.github.cottonmc:json-factory:0.3.0")
