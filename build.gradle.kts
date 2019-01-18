@@ -47,8 +47,7 @@ dependencies {
     modCompile("io.github.cottonmc:client-commands:0.1.0+19w02a-SNAPSHOT")
 
     // Other libraries
-//    add("shadow", "io.github.cottonmc:json-factory:0.3.0")
-    add("shadow", files("../json-factory/build/libs/json-factory-0.3.1-SNAPSHOT.jar"))
+    add("shadow", "io.github.cottonmc:json-factory:0.3.2")
 }
 
 tasks.withType<Jar> {

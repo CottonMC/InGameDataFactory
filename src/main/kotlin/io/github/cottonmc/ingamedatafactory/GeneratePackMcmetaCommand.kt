@@ -6,7 +6,7 @@ package io.github.cottonmc.ingamedatafactory
 
 import com.mojang.brigadier.CommandDispatcher
 import io.github.cottonmc.clientcommands.ArgumentBuilders
-import io.github.cottonmc.clientcommands.ClientCommands
+import io.github.cottonmc.clientcommands.Feedback
 import net.fabricmc.loader.FabricLoader
 import net.minecraft.server.command.CommandSource
 import net.minecraft.text.TranslatableTextComponent
@@ -23,7 +23,7 @@ object GeneratePackMcmetaCommand {
 
                 Files.createDirectories(file.parentFile.toPath())
                 file.writeText("""{ "pack": { "pack_format": 4, "description": "Automatically generated." } }""")
-                ClientCommands.sendFeedback(TranslatableTextComponent("command.igdf.generatedata.generated", "pack.mcmeta"))
+                Feedback.sendFeedback(TranslatableTextComponent("command.igdf.generatedata.generated", "pack.mcmeta"))
                 1
             }
         )

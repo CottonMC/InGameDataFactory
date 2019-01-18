@@ -8,7 +8,7 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType
 import io.github.cottonmc.clientcommands.ArgumentBuilders
-import io.github.cottonmc.clientcommands.ClientCommands
+import io.github.cottonmc.clientcommands.Feedback
 import io.github.cottonmc.jsonfactory.data.Identifier
 import io.github.cottonmc.jsonfactory.gens.ContentGenerator
 import io.github.cottonmc.jsonfactory.gens.Gens
@@ -56,7 +56,7 @@ object GenerateCommand {
             run(context, gen)
     }
 
-    private fun run(context: CommandContext<CommandSource>, gen: ContentGenerator = Gens.basicBlockModel) {
+    private fun run(context: CommandContext<CommandSource>, gen: ContentGenerator) {
         val id = context.getArgument("identifier", Identifier::class.java)
         val packDir = File(FabricLoader.INSTANCE.gameDirectory, "resourcepacks/${IngameDataFactory.outputPath}")
         Files.createDirectories(packDir.toPath())
@@ -79,7 +79,7 @@ object GenerateCommand {
             if (!file.exists()) {
                 Files.createDirectories(file.parentFile.toPath())
                 it.writeToFile(file)
-                ClientCommands.sendFeedback(TranslatableTextComponent("command.igdf.generatedata.generated", file.toRelativeString(packDir)))
+                Feedback.sendFeedback(TranslatableTextComponent("command.igdf.generatedata.generated", file.toRelativeString(packDir)))
             } else {
                 throw FILE_ALREADY_EXISTS.create(file.toRelativeString(FabricLoader.INSTANCE.gameDirectory))
             }
