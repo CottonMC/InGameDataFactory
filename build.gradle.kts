@@ -14,7 +14,7 @@ java {
 }
 
 base {
-    archivesBaseName = "ingame-json-factory"
+    archivesBaseName = "ingame-data-factory"
 }
 
 repositories {
