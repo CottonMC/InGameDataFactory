@@ -23,7 +23,7 @@ repositories {
     maven(url = "http://server.bbkr.space:8081/artifactory/libs-snapshot")
 }
 
-version = "0.1.0"
+version = "0.1.0+19w03c"
 
 minecraft {
 }
@@ -39,12 +39,12 @@ configurations {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    minecraft("com.mojang:minecraft:19w02a")
-    mappings("net.fabricmc:yarn:19w02a.13")
-    modCompile("net.fabricmc:fabric-loader:0.3.2.92")
-    modCompile("net.fabricmc:fabric:0.1.4.71")
+    minecraft("com.mojang:minecraft:19w03c")
+    mappings("net.fabricmc:yarn:19w03c.1")
+    modCompile("net.fabricmc:fabric-loader:0.3.3.98")
+    modCompile("net.fabricmc:fabric:0.1.4.77")
     modCompile("net.fabricmc:fabric-language-kotlin:1.3.10-29")
-    modCompile("io.github.cottonmc:client-commands:0.1.0+19w02a-SNAPSHOT")
+    modCompile("io.github.cottonmc:client-commands:0.1.0+19w03c-SNAPSHOT")
 
     // Other libraries
     add("shadow", "io.github.cottonmc:json-factory:0.3.2")
