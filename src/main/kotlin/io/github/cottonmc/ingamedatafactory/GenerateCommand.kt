@@ -1,6 +1,6 @@
-/* This file is a part of the In-Game JSON Factory project
+/* This file is a part of the In-Game Data Factory project
  * by the Cotton Project, licensed under the MIT license.
- * Full code and license: https://github.com/CottonMC/ingame-json-factory
+ * Full code and license: https://github.com/CottonMC/ingame-data-factory
  */
 package io.github.cottonmc.ingamedatafactory
 
@@ -18,7 +18,7 @@ import net.minecraft.text.TranslatableTextComponent
 import java.io.File
 import java.nio.file.Files
 
-object GenerateCommand {
+object GenerateCommand : Command {
     val FILE_ALREADY_EXISTS = DynamicCommandExceptionType {
         TranslatableTextComponent("command.igdf.generatedata.file_already_exists", it)
     }
@@ -33,7 +33,7 @@ object GenerateCommand {
         "placeholder_item_texture" to Gens.placeholderTextureItem
     )
 
-    fun register(dispatcher: CommandDispatcher<CommandSource>) {
+    override fun register(dispatcher: CommandDispatcher<CommandSource>) {
         dispatcher.register(ArgumentBuilders.literal("generatedata").then(
             ArgumentBuilders.argument(
                 "identifier",

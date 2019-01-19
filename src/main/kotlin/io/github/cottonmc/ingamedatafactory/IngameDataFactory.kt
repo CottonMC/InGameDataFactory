@@ -1,6 +1,6 @@
-/* This file is a part of the In-Game JSON Factory project
+/* This file is a part of the In-Game Data Factory project
  * by the Cotton Project, licensed under the MIT license.
- * Full code and license: https://github.com/CottonMC/ingame-json-factory
+ * Full code and license: https://github.com/CottonMC/ingame-data-factory
  */
 package io.github.cottonmc.ingamedatafactory
 
@@ -9,11 +9,15 @@ import net.fabricmc.api.ModInitializer
 
 object IngameDataFactory : ModInitializer {
     internal var outputPath = "ingame-data-factory"
+    private val commands = listOf(
+        GenerateCommand,
+        GenerateMultipleCommand,
+        GeneratePackMcmetaCommand,
+        ChangePackNameCommand,
+        IGDFHelpCommand
+    )
 
     override fun onInitialize() {
-        ClientCommands.registerCommand(GenerateCommand::register)
-        ClientCommands.registerCommand(GenerateMultipleCommand::register)
-        ClientCommands.registerCommand(GeneratePackMcmetaCommand::register)
-        ClientCommands.registerCommand(ChangePackNameCommand::register)
+        commands.forEach { ClientCommands.registerCommand(it::register) }
     }
 }

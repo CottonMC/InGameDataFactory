@@ -1,6 +1,6 @@
-/* This file is a part of the In-Game JSON Factory project
+/* This file is a part of the In-Game Data Factory project
  * by the Cotton Project, licensed under the MIT license.
- * Full code and license: https://github.com/CottonMC/ingame-json-factory
+ * Full code and license: https://github.com/CottonMC/ingame-data-factory
  */
 package io.github.cottonmc.ingamedatafactory
 
@@ -11,8 +11,8 @@ import io.github.cottonmc.clientcommands.Feedback
 import net.minecraft.server.command.CommandSource
 import net.minecraft.text.TranslatableTextComponent
 
-object ChangePackNameCommand {
-    fun register(dispatcher: CommandDispatcher<CommandSource>) {
+object ChangePackNameCommand : Command {
+    override fun register(dispatcher: CommandDispatcher<CommandSource>) {
         dispatcher.register(
             ArgumentBuilders.literal("changedataoutputpath").then(
                 ArgumentBuilders.argument(

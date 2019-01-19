@@ -1,6 +1,6 @@
-/* This file is a part of the In-Game JSON Factory project
+/* This file is a part of the In-Game Data Factory project
  * by the Cotton Project, licensed under the MIT license.
- * Full code and license: https://github.com/CottonMC/ingame-json-factory
+ * Full code and license: https://github.com/CottonMC/ingame-data-factory
  */
 package io.github.cottonmc.ingamedatafactory
 
@@ -9,7 +9,7 @@ import io.github.cottonmc.clientcommands.ArgumentBuilders
 import io.github.cottonmc.jsonfactory.gens.Gens
 import net.minecraft.server.command.CommandSource
 
-object GenerateMultipleCommand {
+object GenerateMultipleCommand : Command {
     private val sets = mapOf(
         "block" to setOf(Gens.basicBlockModel, Gens.basicBlockState, Gens.basicLootTable, Gens.basicBlockItemModel),
         "slab" to Gens.Variants.allSlabs,
@@ -23,7 +23,7 @@ object GenerateMultipleCommand {
         "door" to Gens.Variants.allDoors
     )
 
-    fun register(dispatcher: CommandDispatcher<CommandSource>) {
+    override fun register(dispatcher: CommandDispatcher<CommandSource>) {
         val base = ArgumentBuilders.literal("generatedataset")
 
         for ((name, set) in sets) {

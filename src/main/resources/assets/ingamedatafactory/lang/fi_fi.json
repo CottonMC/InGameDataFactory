@@ -2,5 +2,10 @@
   "command.igdf.generatedata.file_already_exists": "Tiedosto %s on jo olemassa",
   "command.igdf.generatedata.generated": "Generoitiin %s",
   "command.igdf.changedataoutputpath.changed": "Vaihdettiin kohdepaketin nimi: %s -> %s",
+  "command.igdf.help.title": "IGDF-ohjeet",
+  "command.igdf.help.generatedata": "Generoi yhden datatiedoston",
+  "command.igdf.help.generatedataset": "Generoi useita datatiedostoja",
+  "command.igdf.help.generatepackmcmeta": "Generoi pack.mcmeta-tiedoston",
+  "command.igdf.help.changedataoutputpath": "Vaihtaa tallennuskansion",
   "argument.igdf.identifier_part_missing": "%s-osa puuttuu"
 }

@@ -2,5 +2,10 @@
   "command.igdf.generatedata.file_already_exists": "File %s already exists",
   "command.igdf.generatedata.generated": "Generated %s",
   "command.igdf.changedataoutputpath.changed": "Changed output pack name from %s to %s",
+  "command.igdf.help.title": "IGDF Help",
+  "command.igdf.help.generatedata": "Generates a single data file",
+  "command.igdf.help.generatedataset": "Generates multiple data files",
+  "command.igdf.help.generatepackmcmeta": "Generates a pack.mcmeta file",
+  "command.igdf.help.changedataoutputpath": "Changes the output directory",
   "argument.igdf.identifier_part_missing": "Missing %s"
 }
