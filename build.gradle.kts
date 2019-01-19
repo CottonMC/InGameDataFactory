@@ -5,7 +5,7 @@ plugins {
     java
     kotlin("jvm") version "1.3.11"
     idea
-    id("fabric-loom") version "0.1.0-SNAPSHOT"
+    id("fabric-loom") version "0.2.0-SNAPSHOT"
 }
 
 java {
@@ -41,8 +41,8 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     minecraft("com.mojang:minecraft:19w03c")
     mappings("net.fabricmc:yarn:19w03c.1")
-    modCompile("net.fabricmc:fabric-loader:0.3.3.98")
-    modCompile("net.fabricmc:fabric:0.1.4.77")
+    modCompile("net.fabricmc:fabric-loader:0.3.2.96")
+    modCompile("net.fabricmc:fabric:0.1.4.76")
     modCompile("net.fabricmc:fabric-language-kotlin:1.3.10-29")
     modCompile("io.github.cottonmc:client-commands:0.1.0+19w03c-SNAPSHOT")
 
