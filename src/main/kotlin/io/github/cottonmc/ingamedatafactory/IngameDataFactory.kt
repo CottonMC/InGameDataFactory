@@ -5,9 +5,9 @@
 package io.github.cottonmc.ingamedatafactory
 
 import io.github.cottonmc.clientcommands.ClientCommands
-import net.fabricmc.api.ModInitializer
+import net.fabricmc.api.ClientModInitializer
 
-object IngameDataFactory : ModInitializer {
+object IngameDataFactory : ClientModInitializer {
     internal var outputPath = "ingame-data-factory"
     private val commands = listOf(
         GenerateCommand,
@@ -17,7 +17,7 @@ object IngameDataFactory : ModInitializer {
         IGDFHelpCommand
     )
 
-    override fun onInitialize() {
+    override fun onInitializeClient() {
         commands.forEach { ClientCommands.registerCommand(it::register) }
     }
 }

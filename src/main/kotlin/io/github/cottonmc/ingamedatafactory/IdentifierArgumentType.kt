@@ -15,7 +15,7 @@ object IdentifierArgumentType : ArgumentType<Identifier> {
         TranslatableTextComponent("argument.igdf.identifier_part_missing", it)
     }
 
-    override fun <S> parse(reader: StringReader): Identifier {
+    override fun parse(reader: StringReader): Identifier {
         val namespace = reader.readUnquotedString()
         reader.expect(':')
         val path = reader.readUnquotedString()

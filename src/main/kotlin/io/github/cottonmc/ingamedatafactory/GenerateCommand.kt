@@ -12,7 +12,7 @@ import io.github.cottonmc.clientcommands.Feedback
 import io.github.cottonmc.jsonfactory.data.Identifier
 import io.github.cottonmc.jsonfactory.gens.ContentGenerator
 import io.github.cottonmc.jsonfactory.gens.Gens
-import net.fabricmc.loader.FabricLoader
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.server.command.CommandSource
 import net.minecraft.text.TranslatableTextComponent
 import java.io.File
@@ -58,7 +58,7 @@ object GenerateCommand : Command {
 
     private fun run(context: CommandContext<CommandSource>, gen: ContentGenerator) {
         val id = context.getArgument("identifier", Identifier::class.java)
-        val packDir = File(FabricLoader.INSTANCE.gameDirectory, "resourcepacks/${IngameDataFactory.outputPath}")
+        val packDir = File(FabricLoader.getInstance().gameDirectory, "resourcepacks/${IngameDataFactory.outputPath}")
         Files.createDirectories(packDir.toPath())
 
         gen.generate(id).forEach {
@@ -68,20 +68,15 @@ object GenerateCommand : Command {
             val directory = gen.path
             val fileName = id.path
             val extension = gen.extension
-            val s = if (it.suffix.isEmpty()) "" else "_${it.suffix}"
-
-            val fullName = "$root$sep$namespace$sep$directory$sep$fileName$s.$extension"
-
-            val file = File(
-                packDir, fullName
-            )
+            val name = it.nameWrapper.applyTo(fileName)
+            val file = packDir.resolve("$root$sep$namespace$sep$directory$sep$fileName$name.$extension")
 
             if (!file.exists()) {
                 Files.createDirectories(file.parentFile.toPath())
                 it.writeToFile(file)
                 Feedback.sendFeedback(TranslatableTextComponent("command.igdf.generatedata.generated", file.toRelativeString(packDir)))
             } else {
-                throw FILE_ALREADY_EXISTS.create(file.toRelativeString(FabricLoader.INSTANCE.gameDirectory))
+                throw FILE_ALREADY_EXISTS.create(file.toRelativeString(FabricLoader.getInstance().gameDirectory))
             }
         }
     }
