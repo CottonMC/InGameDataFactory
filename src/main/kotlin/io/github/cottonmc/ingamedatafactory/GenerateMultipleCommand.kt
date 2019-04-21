@@ -5,6 +5,7 @@
 package io.github.cottonmc.ingamedatafactory
 
 import com.mojang.brigadier.CommandDispatcher
+import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import io.github.cottonmc.clientcommands.ArgumentBuilders
 import io.github.cottonmc.jsonfactory.gens.Gens
 import net.minecraft.server.command.CommandSource
@@ -23,8 +24,8 @@ object GenerateMultipleCommand : Command {
         "door" to Gens.Variants.allDoors
     )
 
-    override fun register(dispatcher: CommandDispatcher<CommandSource>) {
-        val base = ArgumentBuilders.literal("generatedataset")
+    override fun register(root: LiteralArgumentBuilder<CommandSource>) {
+        val base = ArgumentBuilders.literal("generateset")
 
         for ((name, set) in sets) {
             base.then(
@@ -40,6 +41,6 @@ object GenerateMultipleCommand : Command {
             )
         }
 
-        dispatcher.register(base)
+        root.then(base)
     }
 }

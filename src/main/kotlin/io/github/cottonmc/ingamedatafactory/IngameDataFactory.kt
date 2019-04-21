@@ -4,6 +4,7 @@
  */
 package io.github.cottonmc.ingamedatafactory
 
+import io.github.cottonmc.clientcommands.ArgumentBuilders
 import io.github.cottonmc.clientcommands.ClientCommands
 import net.fabricmc.api.ClientModInitializer
 
@@ -18,6 +19,10 @@ object IngameDataFactory : ClientModInitializer {
     )
 
     override fun onInitializeClient() {
-        commands.forEach { ClientCommands.registerCommand(it::register) }
+        ClientCommands.registerCommand {
+            val root = ArgumentBuilders.literal("igdf")
+            commands.forEach { cmd -> cmd.register(root) }
+            it.register(root)
+        }
     }
 }

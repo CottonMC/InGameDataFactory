@@ -4,9 +4,9 @@
  */
 package io.github.cottonmc.ingamedatafactory
 
-import com.mojang.brigadier.CommandDispatcher
+import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import net.minecraft.server.command.CommandSource
 
 interface Command {
-    fun register(dispatcher: CommandDispatcher<CommandSource>)
+    fun register(root: LiteralArgumentBuilder<CommandSource>)
 }

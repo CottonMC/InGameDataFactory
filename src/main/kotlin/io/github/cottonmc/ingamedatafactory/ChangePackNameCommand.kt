@@ -4,17 +4,17 @@
  */
 package io.github.cottonmc.ingamedatafactory
 
-import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
+import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import io.github.cottonmc.clientcommands.ArgumentBuilders
 import io.github.cottonmc.clientcommands.Feedback
 import net.minecraft.server.command.CommandSource
 import net.minecraft.text.TranslatableTextComponent
 
 object ChangePackNameCommand : Command {
-    override fun register(dispatcher: CommandDispatcher<CommandSource>) {
-        dispatcher.register(
-            ArgumentBuilders.literal("changedataoutputpath").then(
+    override fun register(root: LiteralArgumentBuilder<CommandSource>) {
+        root.then(
+            ArgumentBuilders.literal("changeoutputpath").then(
                 ArgumentBuilders.argument(
                     "name",
                     StringArgumentType.string()
@@ -22,7 +22,7 @@ object ChangePackNameCommand : Command {
                     val oldName = IngameDataFactory.outputPath
                     val newName = StringArgumentType.getString(it, "name")
                     IngameDataFactory.outputPath = newName
-                    Feedback.sendFeedback(TranslatableTextComponent("command.igdf.changedataoutputpath.changed", oldName, newName))
+                    Feedback.sendFeedback(TranslatableTextComponent("command.igdf.changeoutputpath.changed", oldName, newName))
                     1
                 }
             )

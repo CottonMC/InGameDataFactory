@@ -3,10 +3,16 @@
   "id": "ingame-data-factory",
   "name": "In-Game Data Factory",
   "description": "A mod that generates Minecraft data files in-game.",
-  // TODO: version
   "version": "$version",
   "environment": "client",
   "authors": ["Juuz"],
+  "contact": {
+    "homepage": "https://github.com/CottonMC/ingame-data-factory",
+    "source": "https://github.com/CottonMC/ingame-data-factory",
+    "issues": "https://github.com/CottonMC/ingame-data-factory/issues"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
   "entrypoints": {
     "client": [{
       "adapter": "kotlin",
@@ -14,6 +20,7 @@
     }]
   },
   "requires": {
+    "fabric": "*",
     "fabric-language-kotlin": ">=1.3.30",
     "client-commands": ">=0.2.1"
   },

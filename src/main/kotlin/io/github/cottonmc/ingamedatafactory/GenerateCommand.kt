@@ -4,7 +4,7 @@
  */
 package io.github.cottonmc.ingamedatafactory
 
-import com.mojang.brigadier.CommandDispatcher
+import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType
 import io.github.cottonmc.clientcommands.ArgumentBuilders
@@ -20,7 +20,7 @@ import java.nio.file.Files
 
 object GenerateCommand : Command {
     val FILE_ALREADY_EXISTS = DynamicCommandExceptionType {
-        TranslatableTextComponent("command.igdf.generatedata.file_already_exists", it)
+        TranslatableTextComponent("command.igdf.generate.file_already_exists", it)
     }
 
     private val values = mapOf(
@@ -33,8 +33,8 @@ object GenerateCommand : Command {
         "placeholder_item_texture" to Gens.placeholderTextureItem
     )
 
-    override fun register(dispatcher: CommandDispatcher<CommandSource>) {
-        dispatcher.register(ArgumentBuilders.literal("generatedata").then(
+    override fun register(root: LiteralArgumentBuilder<CommandSource>) {
+        root.then(ArgumentBuilders.literal("generate").then(
             ArgumentBuilders.argument(
                 "identifier",
                 IdentifierArgumentType
@@ -69,12 +69,12 @@ object GenerateCommand : Command {
             val fileName = id.path
             val extension = gen.extension
             val name = it.nameWrapper.applyTo(fileName)
-            val file = packDir.resolve("$root$sep$namespace$sep$directory$sep$fileName$name.$extension")
+            val file = packDir.resolve("$root$sep$namespace$sep$directory$sep$name.$extension")
 
             if (!file.exists()) {
                 Files.createDirectories(file.parentFile.toPath())
                 it.writeToFile(file)
-                Feedback.sendFeedback(TranslatableTextComponent("command.igdf.generatedata.generated", file.toRelativeString(packDir)))
+                Feedback.sendFeedback(TranslatableTextComponent("command.igdf.generate.generated", file.toRelativeString(packDir)))
             } else {
                 throw FILE_ALREADY_EXISTS.create(file.toRelativeString(FabricLoader.getInstance().gameDirectory))
             }
