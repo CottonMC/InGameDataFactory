@@ -19,6 +19,10 @@ You can use `/igdf generate <id> <generator>` to generate a single file,
 or `/igdf generateset <id> <set>` to generate multiple files. See the
 autocompletion for all supported generators.
 
+IGDF generates files in the resource pack directory. You can change the
+pack name with `/igdf changeoutputpath` and generate a pack.mcmeta for it
+with `/igdf packmcmeta`.
+
 Note: `<id>` must be an ID with the format `modname:my_thing`.
 
 Uses [JSON Factory](https://github.com/CottonMC/json-factory) as the
